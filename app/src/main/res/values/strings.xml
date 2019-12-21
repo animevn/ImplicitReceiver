@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">ImplicitReceiverDemo</string>
+    <string name="ivImage">received</string>
 </resources>
