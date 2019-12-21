@@ -13,7 +13,7 @@ public class Repo {
 
     private static Bitmap decodeUri(Context context, Uri uri, int size)throws FileNotFoundException{
         InputStream inputStream = context.getContentResolver().openInputStream(uri);
-
+        Log.d("D.Repo", "inputstream ok");
         BitmapFactory.Options options = new BitmapFactory.Options();
         options.inJustDecodeBounds = true;
         BitmapFactory.decodeStream(inputStream, null, options);
@@ -37,6 +37,7 @@ public class Repo {
             try{
                 Bitmap bitmap = decodeUri(context, uri, size);
                 if (bitmap != null){
+                    Log.d("D.Repo", "bitmap ok");
                     imageView.setImageBitmap(bitmap);
                 }
             }catch (FileNotFoundException e){
