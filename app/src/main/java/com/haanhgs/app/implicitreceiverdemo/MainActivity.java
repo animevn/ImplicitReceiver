@@ -47,7 +47,7 @@ public class MainActivity extends AppCompatActivity {
                 tvMessage.setText(intent.getStringExtra(Intent.EXTRA_TEXT));
             }
 
-            //case image
+            //case image - there's problem, will need to return to this in level 2
             if ("image/*".equals(type)){
                 Log.d("D.MainActivity", "image");
                 Uri uri = intent.getParcelableExtra(Intent.EXTRA_STREAM);
