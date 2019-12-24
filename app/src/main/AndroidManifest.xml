@@ -3,6 +3,7 @@
     xmlns:dist="http://schemas.android.com/apk/distribution"
     package="com.haanhgs.app.implicitreceiverdemo">
 
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <dist:module dist:instant="true" />
 
     <application
