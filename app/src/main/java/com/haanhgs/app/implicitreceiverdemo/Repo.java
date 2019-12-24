@@ -11,7 +11,7 @@ import java.io.InputStream;
 
 public class Repo {
 
-    private static Bitmap decodeUri(Context context, Uri uri, int size)throws FileNotFoundException{
+    public static Bitmap decodeUri(Context context, Uri uri, int size)throws FileNotFoundException{
         BitmapFactory.Options options = new BitmapFactory.Options();
         options.inJustDecodeBounds = true;
         InputStream input = context.getContentResolver().openInputStream(uri);

@@ -1,11 +1,16 @@
 package com.haanhgs.app.implicitreceiverdemo;
 
+import android.content.Context;
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import java.io.FileNotFoundException;
+
 import androidx.appcompat.app.AppCompatActivity;
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -37,21 +42,33 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    private void loadImageFromUri(Context context, Uri uri){
+        if (uri != null){
+            try{
+                Bitmap bitmap = Repo.decodeUri(context, uri, 300);
+                if (bitmap != null){
+                    ivImage.setImageBitmap(bitmap);
+                }
+            }catch (FileNotFoundException e){
+                Log.e("E.Repo", "file not found");
+            }
+        }
+    }
+
     //receive text and image
     private void handleSendIntent(){
-        if (Intent.ACTION_SEND.equals(action)){
+        if (Intent.ACTION_SEND.equals(action) && type != null){
 
             //case text
             if ("text/plain".equals(type)){
-                Log.d("D.MainActivity", "text");
                 tvMessage.setText(intent.getStringExtra(Intent.EXTRA_TEXT));
             }
 
-            //case image - there's problem, will need to return to this in level 2
-            if ("image/*".equals(type)){
+            //receive image ok now
+            if (type.startsWith("image/")){
                 Log.d("D.MainActivity", "image");
                 Uri uri = intent.getParcelableExtra(Intent.EXTRA_STREAM);
-                loadImageFromUri(this, uri, ivImage, 350);
+                loadImageFromUri(this, uri);
             }
         }
     }
