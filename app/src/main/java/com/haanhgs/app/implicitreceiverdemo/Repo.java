@@ -12,11 +12,10 @@ import java.io.InputStream;
 public class Repo {
 
     private static Bitmap decodeUri(Context context, Uri uri, int size)throws FileNotFoundException{
-        InputStream inputStream = context.getContentResolver().openInputStream(uri);
-        Log.d("D.Repo", "inputstream ok");
         BitmapFactory.Options options = new BitmapFactory.Options();
         options.inJustDecodeBounds = true;
-        BitmapFactory.decodeStream(inputStream, null, options);
+        InputStream input = context.getContentResolver().openInputStream(uri);
+        BitmapFactory.decodeStream(input, null, options);
         int widthTemp = options.outWidth;
         int hightTemp = options.outHeight;
         int scale = 1;
@@ -29,7 +28,8 @@ public class Repo {
 
         BitmapFactory.Options newOptions = new BitmapFactory.Options();
         options.inSampleSize = scale;
-        return  BitmapFactory.decodeStream(inputStream, null, newOptions);
+        InputStream newInput = context.getContentResolver().openInputStream(uri);
+        return  BitmapFactory.decodeStream(newInput, null, newOptions);
     }
 
     public static void loadImageFromUri(Context context, Uri uri, ImageView imageView, int size){
