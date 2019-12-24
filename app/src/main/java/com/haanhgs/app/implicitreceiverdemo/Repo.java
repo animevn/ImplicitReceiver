@@ -4,8 +4,6 @@ import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
-import android.util.Log;
-import android.widget.ImageView;
 import java.io.FileNotFoundException;
 import java.io.InputStream;
 
@@ -30,19 +28,5 @@ public class Repo {
         options.inSampleSize = scale;
         InputStream newInput = context.getContentResolver().openInputStream(uri);
         return  BitmapFactory.decodeStream(newInput, null, newOptions);
-    }
-
-    public static void loadImageFromUri(Context context, Uri uri, ImageView imageView, int size){
-        if (uri != null){
-            try{
-                Bitmap bitmap = decodeUri(context, uri, size);
-                if (bitmap != null){
-                    Log.d("D.Repo", "bitmap ok");
-                    imageView.setImageBitmap(bitmap);
-                }
-            }catch (FileNotFoundException e){
-                Log.e("E.Repo", "file not found");
-            }
-        }
     }
 }

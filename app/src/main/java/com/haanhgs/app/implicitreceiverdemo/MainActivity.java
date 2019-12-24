@@ -8,13 +8,10 @@ import android.os.Bundle;
 import android.util.Log;
 import android.widget.ImageView;
 import android.widget.TextView;
-
 import java.io.FileNotFoundException;
-
 import androidx.appcompat.app.AppCompatActivity;
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import static com.haanhgs.app.implicitreceiverdemo.Repo.loadImageFromUri;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -66,7 +63,6 @@ public class MainActivity extends AppCompatActivity {
 
             //receive image ok now
             if (type.startsWith("image/")){
-                Log.d("D.MainActivity", "image");
                 Uri uri = intent.getParcelableExtra(Intent.EXTRA_STREAM);
                 loadImageFromUri(this, uri);
             }
