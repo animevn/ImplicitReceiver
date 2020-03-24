@@ -31,7 +31,6 @@ public class MainActivity extends AppCompatActivity {
     private String type;
     private Uri uri;
 
-
     private void prepareIntent(){
         intent = getIntent();
         action = intent.getAction();
@@ -74,6 +73,7 @@ public class MainActivity extends AppCompatActivity {
 //                ActivityCompat.requestPermissions(
 //                        this, new String[]{Manifest.permission.READ_EXTERNAL_STORAGE}, PERMISSION_REQUEST);
 //            }
+
         } else {
             loadImageFromUri();
         }
